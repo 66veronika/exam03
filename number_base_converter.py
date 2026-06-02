@@ -8,7 +8,7 @@ def number_base_converter(number: str, from_base: int, to_base: int) -> str:
     try:
         if not (2 <= from_base <= 36 and 2 <= to_base <= 36):
             return "ERROR"
-        num = int(number.upper(), from_base)
+        num = int(number.upper(), from_base)  # changes into regular decimal
 
         if num == 0:
             return "0"
