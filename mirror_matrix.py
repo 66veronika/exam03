@@ -11,10 +11,10 @@ def mirror_matrix(matrix: list[list[int]]):
 
 
 lst = [
-    [1,2,3],
-    [1,2,3],
-    [1,2,3],
-    [1,2,3],
+    [1, 2, 3],
+    [1, 2, 3],
+    [1, 2, 3],
+    [1, 2, 3],
 ]
 
 res = mirror_matrix(lst)

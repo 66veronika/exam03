@@ -10,21 +10,21 @@ for same length and lexically equal)
 
 
 def cryptic_sorter(strings: list[str]) -> list[str]:
-    vowels = set("aeiouAEIOU")
 
     def vowel_count(s: str) -> int:
-        return sum(1 for c in s if c in vowels)
-
-    def lexical_key(s: str):
-        # Compare letters case-insensitively
-        return tuple(c.lower() if c.isalpha() else c for c in s)
+        vowels = "aeiouAEIOU"
+        count = 0
+        for c in s:
+            if c in vowels:
+                count += 1
+        return count
 
     return sorted(
         strings,
-        key=lambda s: (
-            len(s),
-            lexical_key(s),
-            vowel_count(s)
+        key=lambda text: (
+            len(text),
+            text.lower(),
+            vowel_count(text)
         )
     )
 
