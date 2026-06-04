@@ -9,27 +9,25 @@ for same length and lexically equal)
 """
 
 
-def swap_sort(arr1: str, arr2: str) -> bool:
-    tmp_first = "".join(c1 for c1 in sorted(arr1))
-    tmp_second = "".join(c2 for c2 in sorted(arr2))
-    
-    return tmp_first[0] < tmp_second[0]
-        
-
-
-
 def cryptic_sorter(strings: list[str]) -> list[str]:
-    primary_sort = sorted(strings, key=lambda current: len(current))
-    for i in range(len(primary_sort)):
-        while i < len(primary_sort) - 1:
-            if len(primary_sort[i]) == len(primary_sort[i + 1]):
-                if swap_sort(primary_sort[i], primary_sort[i + 1]) != True:
-                    primary_sort[i + 1], primary_sort[i] = primary_sort[i], 
-                    primary_sort[i + 1]
-               
-            i += 1
+    vowels = set("aeiouAEIOU")
 
-    # print(primary_sort)
+    def vowel_count(s: str) -> int:
+        return sum(1 for c in s if c in vowels)
 
-lst = ["zbdd", "abbc", "jaabb"]
+    def lexical_key(s: str):
+        # Compare letters case-insensitively
+        return tuple(c.lower() if c.isalpha() else c for c in s)
+
+    return sorted(
+        strings,
+        key=lambda s: (
+            len(s),
+            lexical_key(s),
+            vowel_count(s)
+        )
+    )
+
+
+lst = ["zbdd", "abbc", "Jaa1  bb", "jaa2b  b"]
 print(cryptic_sorter(lst))
